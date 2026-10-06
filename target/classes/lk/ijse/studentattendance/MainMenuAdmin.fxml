@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.studentattendance.controller.AdminDashboardController">
+ <children>
+  <HBox prefHeight="700.0" prefWidth="1100.0">
+   <children>
+    <VBox alignment="TOP_CENTER" prefWidth="270.0" spacing="12.0" style="-fx-background-color: #17324D;">
+     <padding><Insets bottom="25" left="20" right="20" top="30" /></padding>
+     <children>
+      <Label text="SAMS" textFill="WHITE"><font><Font name="System Bold" size="34" /></font></Label>
+      <Label text="ADMIN PANEL" textFill="#BFD8EA"><font><Font name="System Bold" size="14" /></font></Label>
+      <Region VBox.vgrow="ALWAYS" />
+      <Button fx:id="courseButton" maxWidth="300.0" prefHeight="48.0" style="-fx-background-color: #FFFFFF; -fx-text-fill: #17324D; -fx-font-weight: bold;" text="Course Management" />
+<Button fx:id="studentButton" maxWidth="300.0" prefHeight="48.0" style="-fx-background-color: #FFFFFF; -fx-text-fill: #17324D; -fx-font-weight: bold;" text="Student Management" />
+<Button fx:id="lecturerButton" maxWidth="300.0" prefHeight="48.0" style="-fx-background-color: #FFFFFF; -fx-text-fill: #17324D; -fx-font-weight: bold;" text="Lecturer Management" />
+<Button fx:id="scheduleButton" maxWidth="300.0" prefHeight="48.0" style="-fx-background-color: #FFFFFF; -fx-text-fill: #17324D; -fx-font-weight: bold;" text="Class Scheduling" />
+<Button fx:id="attendanceReportButton" maxWidth="300.0" prefHeight="48.0" style="-fx-background-color: #FFFFFF; -fx-text-fill: #17324D; -fx-font-weight: bold;" text="Attendance Reports" />
+      <Region VBox.vgrow="ALWAYS" />
+      <Button fx:id="logoutButton" maxWidth="300" prefHeight="45" style="-fx-background-color: #B3261E; -fx-text-fill: white; -fx-font-weight: bold;" text="LOGOUT" />
+     </children>
+    </VBox>
+    <VBox spacing="20.0" style="-fx-background-color: #F5F7FA;" VBox.vgrow="ALWAYS">
+     <padding><Insets bottom="35" left="45" right="45" top="35" /></padding>
+     <children>
+      <HBox alignment="CENTER_LEFT">
+       <children>
+        <VBox>
+         <children>
+          <Label text="Welcome to SAMS" textFill="#17324D"><font><Font name="System Bold" size="30" /></font></Label>
+          <Label text="Student Attendance Management System" textFill="#667085" />
+         </children>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS" />
+        <Label text="Logged in as: ADMIN" textFill="#17324D" />
+       </children>
+      </HBox>
+      <Separator />
+      <Label text="Dashboard" textFill="#17324D"><font><Font name="System Bold" size="22" /></font></Label>
+      <HBox spacing="20">
+       <VBox alignment="CENTER" prefHeight="120" prefWidth="190" style="-fx-background-color: white; -fx-background-radius: 10;">
+        <children><Label text="COURSES" textFill="#667085" /><Label fx:id="courseCountLabel" text="--"><font><Font name="System Bold" size="30" /></font></Label></children>
+       </VBox>
+       <VBox alignment="CENTER" prefHeight="120" prefWidth="190" style="-fx-background-color: white; -fx-background-radius: 10;">
+        <children><Label text="STUDENTS" textFill="#667085" /><Label fx:id="studentCountLabel" text="--"><font><Font name="System Bold" size="30" /></font></Label></children>
+       </VBox>
+       <VBox alignment="CENTER" prefHeight="120" prefWidth="190" style="-fx-background-color: white; -fx-background-radius: 10;">
+        <children><Label text="LECTURERS" textFill="#667085" /><Label fx:id="lecturerCountLabel" text="--"><font><Font name="System Bold" size="30" /></font></Label></children>
+       </VBox>
+      </HBox>
+      <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
+       <children><Label text="Select a module from the menu to begin." textFill="#667085" /></children>
+      </VBox>
+     </children>
+    </VBox>
+   </children>
+  </HBox>
+ </children>
+</AnchorPane>
