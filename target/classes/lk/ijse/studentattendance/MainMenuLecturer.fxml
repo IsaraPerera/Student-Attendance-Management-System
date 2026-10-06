@@ -20,11 +20,11 @@
       <Label text="SAMS" textFill="WHITE"><font><Font name="System Bold" size="34" /></font></Label>
       <Label text="LECTURER PANEL" textFill="#BFD8EA"><font><Font name="System Bold" size="14" /></font></Label>
       <Region VBox.vgrow="ALWAYS" />
-      <Button fx:id="scheduleButton" maxWidth="300.0" prefHeight="48.0" style="-fx-background-color: #FFFFFF; -fx-text-fill: #17324D; -fx-font-weight: bold;" text="My Class Schedule" />
-      <Button fx:id="attendanceButton" maxWidth="300.0" prefHeight="48.0" style="-fx-background-color: #FFFFFF; -fx-text-fill: #17324D; -fx-font-weight: bold;" text="Attendance Marking" />
-      <Button fx:id="reportButton" maxWidth="300.0" prefHeight="48.0" style="-fx-background-color: #FFFFFF; -fx-text-fill: #17324D; -fx-font-weight: bold;" text="Attendance Reports" />
+      <Button fx:id="scheduleButton" maxWidth="300.0" onAction="#btnScheduleOnAction" prefHeight="48.0" style="-fx-background-color: #FFFFFF; -fx-text-fill: #17324D; -fx-font-weight: bold;" text="My Class Schedule" />
+      <Button fx:id="attendanceButton" maxWidth="300.0" onAction="#btnMarkAttendanceOnAction" prefHeight="48.0" style="-fx-background-color: #FFFFFF; -fx-text-fill: #17324D; -fx-font-weight: bold;" text="Attendance Marking" />
+      <Button fx:id="reportButton" maxWidth="300.0" onAction="#btnViewReportsOnAction" prefHeight="48.0" style="-fx-background-color: #FFFFFF; -fx-text-fill: #17324D; -fx-font-weight: bold;" text="Attendance Reports" />
       <Region VBox.vgrow="ALWAYS" />
-      <Button fx:id="logoutButton" maxWidth="300" prefHeight="45" style="-fx-background-color: #B3261E; -fx-text-fill: white; -fx-font-weight: bold;" text="LOGOUT" />
+      <Button fx:id="logoutButton" maxWidth="300" onAction="#btnLogoutOnAction" prefHeight="45" style="-fx-background-color: #B3261E; -fx-text-fill: white; -fx-font-weight: bold;" text="LOGOUT" />
      </children>
     </VBox>
     <VBox spacing="20.0" style="-fx-background-color: #F5F7FA;" HBox.hgrow="ALWAYS">
