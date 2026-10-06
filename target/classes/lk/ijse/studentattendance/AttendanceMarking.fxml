@@ -16,26 +16,33 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.studentattendance.controller.AttendanceMarkingController">
  <children>
-  <VBox spacing="18" style="-fx-background-color: #F5F7FA;">
+  <VBox spacing="18" style="-fx-background-color: #F5F7FA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
    <padding><Insets bottom="25" left="30" right="30" top="25" /></padding>
    <children>
     <HBox alignment="CENTER_LEFT">
-     <children><Label text="Attendance Marking" textFill="#17324D"><font><Font name="System Bold" size="28" /></font></Label>
-     <Region HBox.hgrow="ALWAYS" /><Button fx:id="backButton" text="BACK" /></children>
+     <children>
+      <Label text="Attendance Marking" textFill="#17324D"><font><Font name="System Bold" size="28" /></font></Label>
+      <Region HBox.hgrow="ALWAYS" />
+      <Button fx:id="backButton" onAction="#btnBackOnAction" text="BACK" />
+     </children>
     </HBox>
     <Separator />
     <HBox spacing="15">
-     <VBox spacing="5"><children><Label text="Class Session" /><ComboBox fx:id="sessionComboBox" prefWidth="300" promptText="Select class session" /></children></VBox>
-     <VBox spacing="5"><children><Label text="Date" /><DatePicker fx:id="datePicker" /></children></VBox>
-     <Button fx:id="loadButton" prefHeight="40" text="LOAD STUDENTS" />
+     <children>
+      <VBox spacing="5"><children><Label text="Class Session" /><ComboBox fx:id="sessionComboBox" prefWidth="300" promptText="Select class session" /></children></VBox>
+      <VBox spacing="5"><children><Label text="Date" /><DatePicker fx:id="datePicker" /></children></VBox>
+      <Button fx:id="loadButton" prefHeight="40" text="LOAD STUDENTS" />
+     </children>
     </HBox>
-    <HBox spacing="10">
-     <Label text="Mark selected student as:" />
-     <Button fx:id="presentButton" prefWidth="100" style="-fx-background-color:#2E7D32;-fx-text-fill:white;" text="PRESENT" />
-     <Button fx:id="absentButton" prefWidth="100" style="-fx-background-color:#C62828;-fx-text-fill:white;" text="ABSENT" />
-     <Button fx:id="lateButton" prefWidth="100" style="-fx-background-color:#EF6C00;-fx-text-fill:white;" text="LATE" />
-     <Region HBox.hgrow="ALWAYS" />
-     <Button fx:id="saveButton" prefHeight="40" prefWidth="160" text="SAVE ATTENDANCE" />
+    <HBox alignment="CENTER_LEFT" spacing="10">
+     <children>
+      <Label text="Mark selected student as:" />
+      <Button fx:id="presentButton" prefWidth="100" style="-fx-background-color:#2E7D32;-fx-text-fill:white;" text="PRESENT" />
+      <Button fx:id="absentButton" prefWidth="100" style="-fx-background-color:#C62828;-fx-text-fill:white;" text="ABSENT" />
+      <Button fx:id="lateButton" prefWidth="100" style="-fx-background-color:#EF6C00;-fx-text-fill:white;" text="LATE" />
+      <Region HBox.hgrow="ALWAYS" />
+      <Button fx:id="saveButton" onAction="#btnSaveAttendanceOnAction" prefHeight="40" prefWidth="160" text="SAVE ATTENDANCE" />
+     </children>
     </HBox>
     <TableView fx:id="attendanceTable" VBox.vgrow="ALWAYS">
      <columns>

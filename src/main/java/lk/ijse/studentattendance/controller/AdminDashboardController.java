@@ -45,7 +45,7 @@ public class AdminDashboardController {
             scheduleButton.setOnAction(e -> navigateTo("/lk/ijse/studentattendance/ClassScheduling.fxml", "Class Scheduling"));
         }
         if (attendanceReportButton != null) {
-            attendanceReportButton.setOnAction(e -> navigateTo("/lk/ijse/studentattendance/AttendanceReport.fxml", "Attendance Reports"));
+            attendanceReportButton.setOnAction(e -> navigateTo("/lk/ijse/studentattendance/AttendanceReporting.fxml", "Attendance Reports"));
         }
         if (logoutButton != null) {
             logoutButton.setOnAction(e -> handleLogout());

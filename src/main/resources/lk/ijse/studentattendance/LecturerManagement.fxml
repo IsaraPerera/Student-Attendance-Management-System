@@ -17,54 +17,64 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="720.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.studentattendance.controller.LecturerManagementController">
- <children>
-  <VBox prefHeight="720" prefWidth="1150" spacing="18" style="-fx-background-color: #F5F7FA;">
-   <padding><Insets bottom="25" left="30" right="30" top="25" /></padding>
-   <children>
-    <HBox alignment="CENTER_LEFT">
-     <children>
-      <Label text="Lecturer Management" textFill="#17324D"><font><Font name="System Bold" size="28" /></font></Label>
-      <Region HBox.hgrow="ALWAYS" />
-      <Button fx:id="backButton" text="BACK" />
-     </children>
-    </HBox>
-    <Separator />
-    <GridPane hgap="15" maxWidth="800" vgap="12">
-     <columnConstraints><ColumnConstraints prefWidth="150" /><ColumnConstraints prefWidth="250" />
-       <ColumnConstraints prefWidth="150" /><ColumnConstraints prefWidth="250" /></columnConstraints>
-     <children><Label text="Lecturer ID" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-<TextField fx:id="lectureridField" promptText="Lecturer ID" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-<Label text="Lecturer Name" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-<TextField fx:id="lecturernameField" promptText="Lecturer Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-<Label text="Email" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-<TextField fx:id="emailField" promptText="Email" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-<Label text="Subject" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-<TextField fx:id="subjectField" promptText="Subject" GridPane.columnIndex="1" GridPane.rowIndex="3" /></children>
-               <rowConstraints>
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-               </rowConstraints>
-    </GridPane>
-    <HBox spacing="10">
-     <Button fx:id="addButton" prefWidth="100" text="ADD" />
-     <Button fx:id="updateButton" prefWidth="100" text="UPDATE" />
-     <Button fx:id="deleteButton" prefWidth="100" text="DELETE" />
-     <Button fx:id="clearButton" prefWidth="100" text="CLEAR" />
-     <Region HBox.hgrow="ALWAYS" />
-     <TextField fx:id="searchField" prefWidth="220" promptText="Search..." />
-     <Button fx:id="searchButton" text="SEARCH" />
-    </HBox>
-    <TableView fx:id="lecturerTable" VBox.vgrow="ALWAYS">
-     <columns><TableColumn fx:id="colLecturerId" prefWidth="150" text="Lecturer ID" />
-<TableColumn fx:id="colLecturerName" prefWidth="150" text="Lecturer Name" />
-<TableColumn fx:id="colEmail" prefWidth="150" text="Email" />
-<TableColumn fx:id="colSubject" prefWidth="150" text="Subject" />
-<TableColumn prefWidth="150" text="Phone" />
-<TableColumn prefWidth="150" text="Actions" /></columns>
-    </TableView>
-   </children>
-  </VBox>
- </children>
+    <children>
+        <VBox spacing="18" style="-fx-background-color: #F5F7FA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <padding><Insets bottom="25" left="30" right="30" top="25" /></padding>
+            <children>
+                <HBox alignment="CENTER_LEFT">
+                    <children>
+                        <Label text="Lecturer Management" textFill="#17324D"><font><Font name="System Bold" size="28" /></font></Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="backButton" text="BACK" />
+                    </children>
+                </HBox>
+                <Separator />
+                <GridPane hgap="15" maxWidth="800" vgap="12">
+                    <columnConstraints>
+                        <ColumnConstraints prefWidth="150" />
+                        <ColumnConstraints prefWidth="250" />
+                        <ColumnConstraints prefWidth="150" />
+                        <ColumnConstraints prefWidth="250" />
+                    </columnConstraints>
+                    <children>
+                        <Label text="Lecturer ID" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <TextField fx:id="lectureridField" promptText="Lecturer ID" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        <Label text="Lecturer Name" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <TextField fx:id="lecturernameField" promptText="Lecturer Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Email" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <TextField fx:id="emailField" promptText="Email" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="Subject" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                        <TextField fx:id="subjectField" promptText="Subject" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                    </children>
+                    <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                    </rowConstraints>
+                </GridPane>
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <children>
+                        <Button fx:id="addButton" prefWidth="100" text="ADD" />
+                        <Button fx:id="updateButton" prefWidth="100" text="UPDATE" />
+                        <Button fx:id="deleteButton" prefWidth="100" text="DELETE" />
+                        <Button fx:id="clearButton" prefWidth="100" text="CLEAR" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="searchField" prefWidth="220" promptText="Search..." />
+                        <Button fx:id="searchButton" text="SEARCH" />
+                    </children>
+                </HBox>
+                <TableView fx:id="lecturerTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colLecturerId" prefWidth="150" text="Lecturer ID" />
+                        <TableColumn fx:id="colLecturerName" prefWidth="150" text="Lecturer Name" />
+                        <TableColumn fx:id="colEmail" prefWidth="150" text="Email" />
+                        <TableColumn fx:id="colSubject" prefWidth="150" text="Subject" />
+                        <TableColumn prefWidth="150" text="Phone" />
+                        <TableColumn prefWidth="150" text="Actions" />
+                    </columns>
+                </TableView>
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>

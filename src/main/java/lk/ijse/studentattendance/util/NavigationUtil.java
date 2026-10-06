@@ -13,7 +13,7 @@ public class NavigationUtil {
 
     public static void goBack(ActionEvent event) {
         UserSession session = UserSession.getInstance();
-        
+
         String fxmlPath = "/lk/ijse/studentattendance/Login.fxml";
         String title = "Login";
 

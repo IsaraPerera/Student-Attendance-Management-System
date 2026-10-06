@@ -1,26 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package lk.ijse.studentattendance.controller;
-
-/**
- *
- * @author Admin
- */
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
+import lk.ijse.studentattendance.model.Student;
 import lk.ijse.studentattendance.util.DBConnection;
+import lk.ijse.studentattendance.util.NavigationUtil;
 
 import java.sql.*;
-import lk.ijse.studentattendance.util.NavigationUtil;
 
 public class StudentManagementController {
 
@@ -40,22 +30,17 @@ public class StudentManagementController {
     @FXML private TableView<Student> dataTable;
 
     private final ObservableList<Student> studentList = FXCollections.observableArrayList();
-    
-    @FXML
-private void backButton(javafx.event.ActionEvent event) {
-    NavigationUtil.goBack(event);
-}
 
     @FXML
     public void initialize() {
         setupTableColumns();
         loadStudents();
 
-        addButton.setOnAction(e -> addStudent());
-        updateButton.setOnAction(e -> updateStudent());
-        deleteButton.setOnAction(e -> deleteStudent());
-        clearButton.setOnAction(e -> clearFields());
-        backButton.setOnAction(e -> navigateTo("/lk/ijse/studentattendance/AdminDashboard.fxml", "Admin Dashboard"));
+        if (addButton != null) addButton.setOnAction(e -> addStudent());
+        if (updateButton != null) updateButton.setOnAction(e -> updateStudent());
+        if (deleteButton != null) deleteButton.setOnAction(e -> deleteStudent());
+        if (clearButton != null) clearButton.setOnAction(e -> clearFields());
+        if (backButton != null) backButton.setOnAction(NavigationUtil::goBack);
 
         dataTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSel, newSel) -> {
             if (newSel != null) {
@@ -67,16 +52,23 @@ private void backButton(javafx.event.ActionEvent event) {
         });
     }
 
-    private void setupTableColumns() {
-        TableColumn<Student, Integer> idCol = (TableColumn<Student, Integer>) dataTable.getColumns().get(0);
-        TableColumn<Student, String> regCol = (TableColumn<Student, String>) dataTable.getColumns().get(1);
-        TableColumn<Student, String> nameCol = (TableColumn<Student, String>) dataTable.getColumns().get(2);
-        TableColumn<Student, Integer> courseCol = (TableColumn<Student, Integer>) dataTable.getColumns().get(3);
+    @FXML
+    private void btnBackOnAction(ActionEvent event) {
+        NavigationUtil.goBack(event);
+    }
 
-        idCol.setCellValueFactory(new PropertyValueFactory<>("studentId"));
-        regCol.setCellValueFactory(new PropertyValueFactory<>("registrationNo"));
-        nameCol.setCellValueFactory(new PropertyValueFactory<>("studentName"));
-        courseCol.setCellValueFactory(new PropertyValueFactory<>("courseId"));
+    private void setupTableColumns() {
+        if (dataTable.getColumns().size() >= 4) {
+            TableColumn<Student, Integer> idCol = (TableColumn<Student, Integer>) dataTable.getColumns().get(0);
+            TableColumn<Student, String> regCol = (TableColumn<Student, String>) dataTable.getColumns().get(1);
+            TableColumn<Student, String> nameCol = (TableColumn<Student, String>) dataTable.getColumns().get(2);
+            TableColumn<Student, Integer> courseCol = (TableColumn<Student, Integer>) dataTable.getColumns().get(3);
+
+            idCol.setCellValueFactory(new PropertyValueFactory<>("studentId"));
+            regCol.setCellValueFactory(new PropertyValueFactory<>("registrationNo"));
+            nameCol.setCellValueFactory(new PropertyValueFactory<>("studentName"));
+            courseCol.setCellValueFactory(new PropertyValueFactory<>("courseId"));
+        }
     }
 
     private void loadStudents() {
@@ -89,7 +81,7 @@ private void backButton(javafx.event.ActionEvent event) {
             while (rs.next()) {
                 studentList.add(new Student(
                         rs.getInt("student_id"),
-                        (Integer) rs.getObject("user_id"), // Fixed: replaced rs.getInteger() with (Integer) rs.getObject()
+                        (Integer) rs.getObject("user_id"),
                         rs.getString("registration_no"),
                         rs.getString("student_name"),
                         rs.getInt("course_id")
@@ -155,38 +147,5 @@ private void backButton(javafx.event.ActionEvent event) {
         registrationnoField.clear();
         studentnameField.clear();
         courseField.clear();
-    }
-
-    private void navigateTo(String fxmlPath, String title) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Stage stage = (Stage) backButton.getScene().getWindow();
-            stage.setScene(new Scene(loader.load()));
-            stage.setTitle(title);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static class Student {
-        private final int studentId;
-        private final Integer userId;
-        private final String registrationNo;
-        private final String studentName;
-        private final int courseId;
-
-        public Student(int studentId, Integer userId, String registrationNo, String studentName, int courseId) {
-            this.studentId = studentId;
-            this.userId = userId;
-            this.registrationNo = registrationNo;
-            this.studentName = studentName;
-            this.courseId = courseId;
-        }
-
-        public int getStudentId() { return studentId; }
-        public Integer getUserId() { return userId; }
-        public String getRegistrationNo() { return registrationNo; }
-        public String getStudentName() { return studentName; }
-        public int getCourseId() { return courseId; }
     }
 }

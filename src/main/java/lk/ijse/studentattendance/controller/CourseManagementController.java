@@ -1,27 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package lk.ijse.studentattendance.controller;
-
-/**
- *
- * @author Admin
- */
-
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
+import lk.ijse.studentattendance.model.Course;
 import lk.ijse.studentattendance.util.DBConnection;
+import lk.ijse.studentattendance.util.NavigationUtil;
 
 import java.sql.*;
-import lk.ijse.studentattendance.util.NavigationUtil;
 
 public class CourseManagementController {
 
@@ -41,11 +30,6 @@ public class CourseManagementController {
     @FXML private TableView<Course> dataTable;
 
     private final ObservableList<Course> courseList = FXCollections.observableArrayList();
-    
-    @FXML
-private void btnBackOnAction(javafx.event.ActionEvent event) {
-    NavigationUtil.goBack(event);
-}
 
     @FXML
     public void initialize() {
@@ -57,7 +41,11 @@ private void btnBackOnAction(javafx.event.ActionEvent event) {
         deleteButton.setOnAction(e -> deleteCourse());
         clearButton.setOnAction(e -> clearFields());
         searchButton.setOnAction(e -> searchCourse());
-        backButton.setOnAction(e -> navigateTo("/lk/ijse/studentattendance/AdminDashboard.fxml", "Admin Dashboard"));
+
+        // Standardize back button action
+        if (backButton != null) {
+            backButton.setOnAction(NavigationUtil::goBack);
+        }
 
         dataTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
@@ -69,16 +57,23 @@ private void btnBackOnAction(javafx.event.ActionEvent event) {
         });
     }
 
-    private void setupTableColumns() {
-        TableColumn<Course, Integer> idCol = (TableColumn<Course, Integer>) dataTable.getColumns().get(0);
-        TableColumn<Course, String> nameCol = (TableColumn<Course, String>) dataTable.getColumns().get(1);
-        TableColumn<Course, String> subCol = (TableColumn<Course, String>) dataTable.getColumns().get(2);
-        TableColumn<Course, String> descCol = (TableColumn<Course, String>) dataTable.getColumns().get(3);
+    @FXML
+    private void btnBackOnAction(ActionEvent event) {
+        NavigationUtil.goBack(event);
+    }
 
-        idCol.setCellValueFactory(new PropertyValueFactory<>("courseId"));
-        nameCol.setCellValueFactory(new PropertyValueFactory<>("courseName"));
-        subCol.setCellValueFactory(new PropertyValueFactory<>("subject"));
-        descCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+    private void setupTableColumns() {
+        if (dataTable.getColumns().size() >= 4) {
+            TableColumn<Course, Integer> idCol = (TableColumn<Course, Integer>) dataTable.getColumns().get(0);
+            TableColumn<Course, String> nameCol = (TableColumn<Course, String>) dataTable.getColumns().get(1);
+            TableColumn<Course, String> subCol = (TableColumn<Course, String>) dataTable.getColumns().get(2);
+            TableColumn<Course, String> descCol = (TableColumn<Course, String>) dataTable.getColumns().get(3);
+
+            idCol.setCellValueFactory(new PropertyValueFactory<>("courseId"));
+            nameCol.setCellValueFactory(new PropertyValueFactory<>("courseName"));
+            subCol.setCellValueFactory(new PropertyValueFactory<>("subject"));
+            descCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        }
     }
 
     private void loadCourses() {
@@ -108,7 +103,7 @@ private void btnBackOnAction(javafx.event.ActionEvent event) {
         try (Connection conn = DBConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            stmt.setString(1, "CRS-" + System.currentTimeMillis() % 10000);
+            stmt.setString(1, "CRS-" + (System.currentTimeMillis() % 10000));
             stmt.setString(2, coursenameField.getText());
             stmt.setString(3, subjectField.getText());
             stmt.setString(4, descriptionField.getText());
@@ -155,7 +150,7 @@ private void btnBackOnAction(javafx.event.ActionEvent event) {
 
     private void searchCourse() {
         String keyword = searchField.getText();
-        if (keyword.isEmpty()) {
+        if (keyword == null || keyword.trim().isEmpty()) {
             loadCourses();
             return;
         }
@@ -189,38 +184,5 @@ private void btnBackOnAction(javafx.event.ActionEvent event) {
         coursenameField.clear();
         subjectField.clear();
         descriptionField.clear();
-    }
-
-    private void navigateTo(String fxmlPath, String title) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Stage stage = (Stage) backButton.getScene().getWindow();
-            stage.setScene(new Scene(loader.load()));
-            stage.setTitle(title);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static class Course {
-        private final int courseId;
-        private final String courseCode;
-        private final String courseName;
-        private final String subject;
-        private final String description;
-
-        public Course(int courseId, String courseCode, String courseName, String subject, String description) {
-            this.courseId = courseId;
-            this.courseCode = courseCode;
-            this.courseName = courseName;
-            this.subject = subject;
-            this.description = description;
-        }
-
-        public int getCourseId() { return courseId; }
-        public String getCourseCode() { return courseCode; }
-        public String getCourseName() { return courseName; }
-        public String getSubject() { return subject; }
-        public String getDescription() { return description; }
     }
 }
